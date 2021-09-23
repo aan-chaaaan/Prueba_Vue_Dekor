@@ -3,9 +3,17 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+import { carritoModulo } from "./modules/carrito";
+import { productosModulo } from "./modules/producto";
+
+const store = new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: {},
+  modules: {
+    carrito: carritoModulo,
+    producto: productosModulo,
+  },
 });
+
+export default store;
