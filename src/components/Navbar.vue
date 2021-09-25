@@ -4,9 +4,9 @@
       class="navbar navbar-expand-lg navbar-light fixed-top"
       style="background-color: #e3f2fd"
     >
-      <img src="favicon-2.png" alt="favicon" class="ms-2">
-      <a class=" navbar-brand p-2 " href="#">Dekor</a>
-      
+      <img src="icon.png" alt="icon" class="ms-2" />
+      <a class="navbar-brand p-2" href="#">Dekor</a>
+
       <button
         class="navbar-toggler"
         type="button"
@@ -35,15 +35,28 @@
           </li>
           <router-view></router-view>
         </ul>
-        <form class="d-flex justify-content-end">
+        <form
+          class="d-flex justify-content-end"
+        >
           <input
             class="form-control me-2"
             type="search"
             placeholder="Busca un producto"
             aria-label="Search"
+            :value="$store.state.busqueda"
+            @input="
+            $store.dispatch('busquedaProducto', $event.target.value)"
           />
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
+          <button class="btn btn-outline-success" type="button" @click="buscarProducto">Buscar</button>
+          
         </form>
+        <Productos
+            v-if="$store.getters.ProductosBusqueda.length > 0"
+            :producto="$store.getters.ProductosBusqueda"
+          />
+          <ul v-else>
+            <li>Escribe algo para buscar</li>
+          </ul>
       </div>
     </nav>
   </div>
@@ -51,5 +64,10 @@
 <script>
 export default {
   name: "Navbar",
+  methods: {
+    buscarProducto() {
+      this.$store.dispatch("producto/nuevaBusqueda", { ...this.producto });
+    },
+  },
 };
 </script>

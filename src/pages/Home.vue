@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <Navbar></Navbar>
     <Productos
       v-for="(producto, index) in $store.state.producto.TodosLosProductos"

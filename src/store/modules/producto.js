@@ -1,11 +1,13 @@
 export const productosModulo = {
   namespaced: true,
   state: {
+    busqueda: "",
     TodosLosProductos: [
       {
         nombre: "Cuadro foto",
         categoria: "Cuadros",
-        tamaño: "30 x 30",
+        tamaño: "Mediano",
+        stock: 20,
         oferta: false,
         descuento: 0,
         imagen:
@@ -15,7 +17,8 @@ export const productosModulo = {
       {
         nombre: "Cuadro arte abstracto",
         categoria: "Cuadros",
-        tamaño: "80 x 75",
+        tamaño: "Grande ",
+        stock: 20,
         oferta: true,
         descuento: 20,
         imagen:
@@ -25,7 +28,8 @@ export const productosModulo = {
       {
         nombre: "Plantas interior",
         categoria: "Plantas interior",
-        tamaño: "60cm largo",
+        tamaño: "Pequeño",
+        stock: 20,
         oferta: false,
         descuento: 0,
         imagen:
@@ -35,7 +39,8 @@ export const productosModulo = {
       {
         nombre: "Silla oficina",
         categoria: "Sillas",
-        tamaño: "90cm largo",
+        tamaño: "Mediano",
+        stock: 20,
         oferta: false,
         descuento: 0,
         imagen:
@@ -44,14 +49,37 @@ export const productosModulo = {
       },
     ],
   },
-  mutations:{
-    NUEVO_PRODUCTO(state, nuevoProducto){
-      state.push(nuevoProducto)
-    }
+  getters: {
+    ProductosBusqueda(state) {
+      if (state.busqueda === "") {
+        return {};
+      } else {
+        return state.TodosLosproductos.filter((producto) =>
+          producto.nombre.toLowerCase().includes(state.busqueda.toLowerCase())
+        );
+      }
+    },
   },
-  // actions: {
-  //   nuevoProducto(context, ){
-  //     context.dispatch
-  //   }
-  // }
+  mutations: {
+    NUEVO_PRODUCTO(state, nuevoProducto) {
+      state.TodosLosProductos.push(nuevoProducto);
+    },
+    BUSQUEDA_PRODUCTO(state, nuevaBusqueda) {
+      state.busqueda = nuevaBusqueda;
+    },
+  },
+  actions: {
+    nuevoProducto(context, nuevoProducto) {
+      context.commit("NUEVO_PRODUCTO", nuevoProducto);
+    },
+    busquedaProducto(context, nuevaBusqueda) {
+      if (typeof nuevaBusqueda === "string") {
+        context.commit("BUSQUEDA_PRODUCTO", nuevaBusqueda);
+      } else {
+        console.warn(
+          `nueva busqueda debiese de ser de tipo string y recibir un tipo ${typeof nuevaBusqueda}`
+        );
+      }
+    },
+  },
 };

@@ -1,21 +1,19 @@
 <template>
-  <div class="row row-cols-2 row-cols-md-2 g-4 mt-4">
-    <div class="col">
+  <div class="row g-4 mt-2 justify-content-center container ms-5">
+    <div class="col-sm-12 col-lg-6">
       <div class="card">
         <img :src="producto.imagen" class="card-img-top" alt="image" />
         <div class="card-body">
           <h5 class="card-text text-center">{{ producto.nombre }}</h5>
           <p class="card-text">Categoria: {{ producto.categoria }}</p>
           <p class="card-text">Tamaño: {{ producto.tamaño }}</p>
-          <p
-            class="card-text"
-            v-if="
+          <p class="card-text">
+            Descuento:
+            {{
               producto.oferta
                 ? `${producto.descuento}%`
-                : 'Este producto no tiene descuento'
-            "
-          >
-            Descuento:
+                : "Este producto no tiene descuento"
+            }}
           </p>
           <p class="card-text">Precio: ${{ producto.precio }}</p>
           <p class="card-text">
@@ -23,11 +21,8 @@
             tenetur iure, nihil qui repudiandae.
           </p>
         </div>
+        <button type="button" class="btn btn-dark">Agregar al carrito</button>
       </div>
-      <label>Cantidad del Producto:</label>
-      <button type="button" class="btn btn-outline-info">+</button>
-      <label>1</label>
-      <button type="button" class="btn btn-outline-info">-</button>
     </div>
   </div>
 </template>
@@ -40,11 +35,8 @@ export default {
 };
 </script>
 <style scoped>
-button {
-  width: 28px;
-  height: 28px;
-  margin: 10px;
-  border-radius: 50%;
-  padding: 1px;
+.container {
+  width: 2500px;
+  margin-left: 1000px;
 }
 </style>

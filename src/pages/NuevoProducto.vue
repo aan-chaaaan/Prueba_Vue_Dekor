@@ -11,7 +11,7 @@
           required
           name="nombre"
           maxlength="50"
-          minlength="8"
+          minlength="5"
           v-model="producto.nombre"
         />
       </div>
@@ -43,9 +43,9 @@
         >
         <select class="form-select" id="categoria" v-model="producto.categoria">
           <option selected>Elige..</option>
-          <option value="1">Cuadros</option>
-          <option value="2">Sillas</option>
-          <option value="3">Plantas</option>
+          <option value="Cuadros">Cuadros</option>
+          <option value="Sillas">Sillas</option>
+          <option value="Plantas">Plantas</option>
         </select>
       </div>
       <div class="input-group mb-3 container mt-5">
@@ -56,9 +56,9 @@
           v-model="producto.tamaño"
         >
           <option selected>Elige..</option>
-          <option value="1">30x30</option>
-          <option value="2">50x75</option>
-          <option value="3">85x70</option>
+          <option value="Pequeño">Pequeño</option>
+          <option value="Mediano">Mediano</option>
+          <option value="Grande">Grande</option>
         </select>
       </div>
       <div class="form-check mt-5 ms-3">
@@ -68,26 +68,27 @@
           value=""
           id="flexCheckDefault"
           v-model="producto.oferta"
-          
         />
-        <label class="form-check-label" for="flexCheckDefault" >
+        <label class="form-check-label" for="flexCheckDefault">
           Producto tiene oferta
         </label>
       </div>
-      <div  class="input-group mb-3 container mt-3">
-        <label  class="input-group-text" for="inputGroupSelect01"
+      <div
+        v-if="producto.oferta === true"
+        class="input-group mb-3 container mt-3"
+      >
+        <label class="input-group-text" for="inputGroupSelect01"
           >Descuento</label
         >
         <select
           class="form-select"
           id="inputGroupSelect01"
           v-model="producto.descuento"
-          
         >
           <option selected>Elige..</option>
-          <option value="1">10%</option>
-          <option value="2">20%</option>
-          <option value="3">50%</option>
+          <option value="10%">10%</option>
+          <option value="20%">20%</option>
+          <option value="50%">50%</option>
         </select>
       </div>
       <button type="submit" class="btn btn-info m-4 btn-lg">
@@ -103,9 +104,9 @@ export default {
   components: { Navbar },
   data: () => ({
     producto: {
-      nombre: '',
-      imagen: '',
-      precio: '',
+      nombre: "",
+      imagen: "",
+      precio: "",
       categoria: null,
       tamaño: null,
       oferta: null,
@@ -113,7 +114,7 @@ export default {
   }),
   methods: {
     CrearNuevoProducto() {
-      this.$store.dispatch('producto/nuevoProducto', {...this.producto});
+      this.$store.dispatch("producto/nuevoProducto", { ...this.producto });
     },
   },
 };
@@ -126,7 +127,7 @@ export default {
   width: 670px;
   margin-bottom: 20px;
 }
-button{
+button {
   height: 50px;
 }
 </style>

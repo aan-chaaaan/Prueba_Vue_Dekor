@@ -1,9 +1,26 @@
 <template>
   <div class="container">
     <Navbar></Navbar>
-    <h3 class="text-center">Carrito de compras</h3>
-    <h5>Producto:</h5>
-    <h5>Total:</h5>
+    <h3>Cariito de compras</h3>
+    <div class="card mb-3" style="max-width: 540px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            :src="producto.imagen"
+            class="img-fluid rounded-start"
+            alt="image"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <!-- cambiar esta parte para poner el total-->
+            <p class="card-text">{{ producto.precio }}</p>
+            <!-- cambiar esta parte para poner el total-->
+          </div>
+        </div>
+      </div>
+    </div>
     <label>Cantidad del Producto:</label>
     <button type="button" class="btn btn-outline-info">+</button>
     <label>1</label>
@@ -15,6 +32,9 @@ import Navbar from "../components/Navbar.vue";
 
 export default {
   components: { Navbar },
+  props: {
+    producto: { type: Object, required: true },
+  },
 };
 </script>
 <style scoped>
