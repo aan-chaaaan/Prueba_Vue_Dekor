@@ -23,7 +23,7 @@ export default new Router({
     },
     {
       path: "/carrito-de-compras",
-      name: "carrito",
+      name: "Carrito",
       component: Carrito,
     },
     {

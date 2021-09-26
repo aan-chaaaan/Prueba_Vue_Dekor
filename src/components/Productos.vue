@@ -1,6 +1,6 @@
 <template>
-  <div class="row g-4 mt-2 justify-content-center container ms-5">
-    <div class="col-sm-12 col-lg-6">
+  <div class="row g-4 mt-2 justify-content-center">
+    <div class="col-lg-6">
       <div class="card">
         <img :src="producto.imagen" class="card-img-top" alt="image" />
         <div class="card-body">
@@ -21,7 +21,7 @@
             tenetur iure, nihil qui repudiandae.
           </p>
         </div>
-        <button type="button" class="btn btn-dark">Agregar al carrito</button>
+        <button type="button" class="btn btn-dark" @click="AgregarProductoCarrito">Agregar al carrito</button>
       </div>
     </div>
   </div>
@@ -32,6 +32,11 @@ export default {
   props: {
     producto: { type: Object, required: true },
   },
+  methods:{
+    AgregarProductoCarrito(){
+      this.$store.dispatch("carrito/NuevoProductoAlCarrito")
+    }
+  }
 };
 </script>
 <style scoped>

@@ -50,36 +50,49 @@ export const productosModulo = {
     ],
   },
   getters: {
-    ProductosBusqueda(state) {
-      if (state.busqueda === "") {
-        return {};
-      } else {
-        return state.TodosLosproductos.filter((producto) =>
-          producto.nombre.toLowerCase().includes(state.busqueda.toLowerCase())
-        );
-      }
-    },
+    // ProductosBusqueda(state) {
+    //   if (state.busqueda === "") {
+    //     return {};
+    //   } else {
+    //     return state.TodosLosProductos.filter(
+    //       (producto) =>
+    //         producto.nombre
+    //           .toLowerCase()
+    //           .includes(state.busqueda.toLowerCase()) ||
+    //         producto.categoria
+    //           .toLowerCase()
+    //           .includes(state.busqueda.toLowerCase()) ||
+    //         producto.tamaño
+    //           .toLowerCase()
+    //           .includes(state.busqueda.toLowerCase()) ||
+    //         producto.oferta.toLowerCase().includes(state.busqueda.toLowerCase())
+    //     );
+    //   }
+    // },
   },
   mutations: {
     NUEVO_PRODUCTO(state, nuevoProducto) {
       state.TodosLosProductos.push(nuevoProducto);
     },
-    BUSQUEDA_PRODUCTO(state, nuevaBusqueda) {
-      state.busqueda = nuevaBusqueda;
-    },
+    // BUSQUEDA_PRODUCTO(state, nuevaBusqueda) {
+    //   state.busqueda = nuevaBusqueda;
+    // },
+    
+
   },
   actions: {
     nuevoProducto(context, nuevoProducto) {
       context.commit("NUEVO_PRODUCTO", nuevoProducto);
     },
-    busquedaProducto(context, nuevaBusqueda) {
-      if (typeof nuevaBusqueda === "string") {
-        context.commit("BUSQUEDA_PRODUCTO", nuevaBusqueda);
-      } else {
-        console.warn(
-          `nueva busqueda debiese de ser de tipo string y recibir un tipo ${typeof nuevaBusqueda}`
-        );
-      }
-    },
+    // busquedaProducto(context, nuevaBusqueda) {
+    //   if (typeof nuevaBusqueda === "string") {
+    //     context.commit("BUSQUEDA_PRODUCTO", nuevaBusqueda);
+    //     // } else {
+    //     //   console.warn(
+    //     //     `nueva busqueda debiese de ser de tipo string y recibir un tipo ${typeof nuevaBusqueda}`
+    //     //   );
+    //   }
+    // },
+    
   },
 };

@@ -1,40 +1,16 @@
 <template>
   <div class="container">
-    <Navbar></Navbar>
-    <h3>Cariito de compras</h3>
-    <div class="card mb-3" style="max-width: 540px">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            :src="producto.imagen"
-            class="img-fluid rounded-start"
-            alt="image"
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">{{ producto.nombre }}</h5>
-            <!-- cambiar esta parte para poner el total-->
-            <p class="card-text">{{ producto.precio }}</p>
-            <!-- cambiar esta parte para poner el total-->
-          </div>
-        </div>
-      </div>
-    </div>
-    <label>Cantidad del Producto:</label>
-    <button type="button" class="btn btn-outline-info">+</button>
-    <label>1</label>
-    <button type="button" class="btn btn-outline-info">-</button>
+    <ProductoCarrito v-for="(producto, index) in $store.state.carrito.TodosLosProductos"
+      :key="index"
+      :producto="producto"></ProductoCarrito>
   </div>
 </template>
 <script>
-import Navbar from "../components/Navbar.vue";
+// import Navbar from "../components/Navbar.vue";
+import ProductoCarrito from "../components/ProductoCarrito.vue";
 
 export default {
-  components: { Navbar },
-  props: {
-    producto: { type: Object, required: true },
-  },
+  components: { ProductoCarrito },
 };
 </script>
 <style scoped>
